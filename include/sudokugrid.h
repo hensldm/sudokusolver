@@ -11,7 +11,7 @@ class SudokuGrid {
     private:
         int grid[SUDOKUGRID_HEIGHT][SUDOKUGRID_HEIGHT];
 
-        bool CheckBounds(int row, int col) {
+        bool checkBounds(int row, int col) {
             if((row >= 0 && row < SUDOKUGRID_HEIGHT) && (col >= 0 && col < SUDOKUGRID_WIDTH)) {
                 return true;
             } else {
@@ -25,11 +25,11 @@ class SudokuGrid {
 
         SudokuGrid(int grid[SUDOKUGRID_HEIGHT][SUDOKUGRID_HEIGHT]);
 
-        int GetGridValue(int row, int col);
+        int getGridValue(int row, int col);
 
-        void SetGridValue(int row, int col, int val);
+        void setGridValue(int row, int col, int val);
 
-        std::string ToString();
+        std::string toString();
 };
 
 #endif

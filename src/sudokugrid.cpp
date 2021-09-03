@@ -43,25 +43,25 @@ SudokuGrid::SudokuGrid(int grid[9][9]){
     int row, col;
     for(row = 0; row < SUDOKUGRID_HEIGHT; row++) {
         for (col = 0; col < SUDOKUGRID_HEIGHT; col++) {
-            SetGridValue(row, col, grid[row][col]);
+            setGridValue(row, col, grid[row][col]);
         }
     }
 }
 
-int SudokuGrid::GetGridValue(int row, int col) {
-    if (CheckBounds(row, col)) {
+int SudokuGrid::getGridValue(int row, int col) {
+    if (checkBounds(row, col)) {
         return grid[row][col];
     }
     return OUTOFBOUNDS_ERROR;
 }
 
-void SudokuGrid::SetGridValue(int row, int col, int val) {
-    if(CheckBounds(row, col)) {
+void SudokuGrid::setGridValue(int row, int col, int val) {
+    if(checkBounds(row, col)) {
         grid[row][col] = val;
     }
 }
 
-std::string SudokuGrid::ToString() {
+std::string SudokuGrid::toString() {
     int row, col;
     std::ostringstream os;
 

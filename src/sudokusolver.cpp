@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
 
     std::string filename(argv[1]);
     SudokuGrid sudokuGrid(filename);
-    std::cout << sudokuGrid.ToString();
+    std::cout << sudokuGrid.toString();
 
     return 0;
 }

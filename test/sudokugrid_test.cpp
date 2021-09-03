@@ -21,12 +21,12 @@ std::string TESTFILE = "test/testgrid.csv";
 TEST(SudokuGridTest, GetValueError) {
     SudokuGrid sudokuGrid(TESTGRID);
     
-    ASSERT_EQ(OUTOFBOUNDS_ERROR, sudokuGrid.GetGridValue(9, 9));
-    ASSERT_EQ(OUTOFBOUNDS_ERROR, sudokuGrid.GetGridValue(9, 1));
-    ASSERT_EQ(OUTOFBOUNDS_ERROR, sudokuGrid.GetGridValue(2, 9));
-    ASSERT_EQ(OUTOFBOUNDS_ERROR, sudokuGrid.GetGridValue(-1, -1));
-    ASSERT_EQ(OUTOFBOUNDS_ERROR, sudokuGrid.GetGridValue(-1, 1));
-    ASSERT_EQ(OUTOFBOUNDS_ERROR, sudokuGrid.GetGridValue(2, -1));
+    ASSERT_EQ(OUTOFBOUNDS_ERROR, sudokuGrid.getGridValue(9, 9));
+    ASSERT_EQ(OUTOFBOUNDS_ERROR, sudokuGrid.getGridValue(9, 1));
+    ASSERT_EQ(OUTOFBOUNDS_ERROR, sudokuGrid.getGridValue(2, 9));
+    ASSERT_EQ(OUTOFBOUNDS_ERROR, sudokuGrid.getGridValue(-1, -1));
+    ASSERT_EQ(OUTOFBOUNDS_ERROR, sudokuGrid.getGridValue(-1, 1));
+    ASSERT_EQ(OUTOFBOUNDS_ERROR, sudokuGrid.getGridValue(2, -1));
 
 }
 
@@ -36,7 +36,7 @@ TEST(SudokuGridTest, GridConstructor) {
 
     for(row = 0; row < SUDOKUGRID_HEIGHT; row++) {
         for(col = 0; col < SUDOKUGRID_WIDTH; col++) {
-            ASSERT_EQ(TESTGRID[row][col], sudokuGrid.GetGridValue(row, col));
+            ASSERT_EQ(TESTGRID[row][col], sudokuGrid.getGridValue(row, col));
         }
     }
 }
@@ -47,7 +47,7 @@ TEST(SudokuGridTest, FileConstructor) {
 
     for(row = 0; row < SUDOKUGRID_HEIGHT; row++) {
         for(col = 0; col < SUDOKUGRID_WIDTH; col++) {
-            ASSERT_EQ(TESTGRID[row][col], sudokuGrid.GetGridValue(row, col));
+            ASSERT_EQ(TESTGRID[row][col], sudokuGrid.getGridValue(row, col));
         }
     }
 }
@@ -55,7 +55,7 @@ TEST(SudokuGridTest, FileConstructor) {
 TEST(SudokuGridTest, ToString) {
     SudokuGrid sudokuGrid(TESTGRID);
 
-    ASSERT_EQ(TESTGRIDSTR, sudokuGrid.ToString());
+    ASSERT_EQ(TESTGRIDSTR, sudokuGrid.toString());
     
 }
 
