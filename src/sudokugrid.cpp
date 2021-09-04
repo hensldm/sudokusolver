@@ -76,3 +76,43 @@ std::string SudokuGrid::toString() {
     }
     return os.str();
 }
+
+Graph SudokuGrid::toGraph(){
+    Graph graph;
+    int row, col, blockrow, blockcol, src, dst;
+    
+    for(row = 0; row < SUDOKUGRID_HEIGHT; row++) {
+        for(col = 0; col < SUDOKUGRID_WIDTH; col++) {
+            graph.addVertex(grid[row][col]);
+        }
+    }
+
+    for(row = 0; row < SUDOKUGRID_HEIGHT * SUDOKUGRID_WIDTH; row += SUDOKUGRID_WIDTH) {
+        for(src = row; src < row + SUDOKUGRID_WIDTH; src++) {
+            for (dst = src + 1; dst < row + SUDOKUGRID_WIDTH; dst++) {
+                graph.addEdge(src, dst, false);
+            }
+        }
+    }
+
+    for(col = 0; col < SUDOKUGRID_WIDTH; col++) {
+        for(src = col; src < SUDOKUGRID_HEIGHT * SUDOKUGRID_WIDTH; src += SUDOKUGRID_WIDTH) {
+            for (dst = src + SUDOKUGRID_WIDTH; dst < SUDOKUGRID_HEIGHT * SUDOKUGRID_WIDTH; dst += SUDOKUGRID_WIDTH) {
+                graph.addEdge(src, dst, false);
+            }
+        }
+    }
+
+    for(blockrow = 0; blockrow < BLOCK_HEIGHT; blockrow++) {
+        for(blockcol = 0; blockcol < BLOCK_WIDTH; blockcol++) {
+            int topleft = blockrow * BLOCK_HEIGHT * SUDOKUGRID_WIDTH + blockcol * BLOCK_WIDTH;
+            int nextBlockTopLeft = topleft + BLOCK_HEIGHT * SUDOKUGRID_WIDTH;
+            for(src = topleft; src < nextBlockTopLeft; src = moveForwardOneInBlock(src)) {
+                for(dst = moveForwardOneInBlock(src); dst < nextBlockTopLeft; dst = moveForwardOneInBlock(dst)) {
+                    graph.addEdge(src, dst, false);
+                }
+            }
+        }
+    }
+    return graph;
+}

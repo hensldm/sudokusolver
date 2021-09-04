@@ -2,7 +2,6 @@
 #define VERTEX_H
 
 #include <unordered_set>
-#include <tuple>
 
 class Vertex {
     private:

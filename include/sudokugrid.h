@@ -2,9 +2,12 @@
 #define SUDOKUGRID_H
 
 #include <string>
+#include "graph.h"
 
 #define SUDOKUGRID_HEIGHT 9
 #define SUDOKUGRID_WIDTH 9
+#define BLOCK_HEIGHT 3
+#define BLOCK_WIDTH 3
 #define OUTOFBOUNDS_ERROR -1
 
 class SudokuGrid {
@@ -19,6 +22,14 @@ class SudokuGrid {
                 return false;
             }
         }
+
+        int moveForwardOneInBlock(int idx) {
+            if (idx % BLOCK_WIDTH == BLOCK_WIDTH - 1) {
+                return idx + SUDOKUGRID_WIDTH - BLOCK_WIDTH + 1;
+            } else {
+                return idx + 1;
+            }
+        }
     
     public:
         SudokuGrid(std::string filename);
@@ -30,6 +41,8 @@ class SudokuGrid {
         void setGridValue(int row, int col, int val);
 
         std::string toString();
+
+        Graph toGraph();
 };
 
 #endif

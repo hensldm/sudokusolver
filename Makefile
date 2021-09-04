@@ -1,7 +1,7 @@
 .PHONY: clean test
 
-sudokusolver: build/sudokusolver.o build/sudokugrid.o
-	g++ -g -Wall -o sudokusolver build/sudokusolver.o  build/sudokugrid.o
+sudokusolver: build/sudokusolver.o build/sudokugrid.o build/vertex.o build/graph.o
+	g++ -g -Wall -o sudokusolver build/sudokusolver.o build/sudokugrid.o build/vertex.o build/graph.o
 
 build/sudokusolver.o: src/sudokusolver.cpp include/sudokugrid.h
 	g++ -g -Iinclude -c src/sudokusolver.cpp -o build/sudokusolver.o
@@ -19,16 +19,16 @@ clean:
 	rm sudokusolver *_test build/*.o
 
 test: sudokugrid_test vertex_test graph_test
-	./sudokugrid_test
 	./vertex_test
 	./graph_test
-
-sudokugrid_test: test/sudokugrid_test.cpp build/sudokugrid.o
-	g++ -Iinclude -o sudokugrid_test test/sudokugrid_test.cpp build/sudokugrid.o -lgtest -lpthread
+	./sudokugrid_test
 
 vertex_test: test/vertex_test.cpp build/vertex.o
 	g++ -Iinclude -o vertex_test test/vertex_test.cpp build/vertex.o -lgtest -lpthread
 	
 graph_test: test/graph_test.cpp build/graph.o build/vertex.o
 	g++ -Iinclude -o graph_test test/graph_test.cpp build/graph.o build/vertex.o -lgtest -lpthread
+
+sudokugrid_test: test/sudokugrid_test.cpp build/sudokugrid.o
+	g++ -Iinclude -o sudokugrid_test test/sudokugrid_test.cpp build/sudokugrid.o build/graph.o build/vertex.o -lgtest -lpthread
 
