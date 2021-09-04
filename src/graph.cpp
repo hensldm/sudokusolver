@@ -64,6 +64,13 @@ void Graph::setVertexVisited(int idx) {
     //! @TODO: Print error message to stderr on error
 }
 
+void Graph::unsetVertexVisited(int idx) {
+    if(checkBounds(idx)) {
+        visited[idx] = false;
+    }
+    //! @TODO: Print error message to stderr on error
+}
+
 bool Graph::isVertexVisited(int idx) {
     if(checkBounds(idx)) {
         return visited[idx];

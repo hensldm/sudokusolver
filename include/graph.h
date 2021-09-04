@@ -25,6 +25,7 @@ class Graph {
 
         void clearVisited();
         void setVertexVisited(int idx);
+        void unsetVertexVisited(int idx);
         bool isVertexVisited(int idx);
 };
 
